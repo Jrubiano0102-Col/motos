@@ -2174,3 +2174,401 @@ button {
     padding: 24px 22px;
   }
 }
+
+/* ====================================================================
+   MOBILE NAVIGATION BOTTOM BAR & DASHBOARD STYLES
+   ==================================================================== */
+
+/* Hide by default on desktop/tablet */
+.mobile-bottom-nav,
+.mobile-dashboard,
+.topbar-menu-toggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* Hide topbar social icons on mobile */
+  .topbar__inner .social-links {
+    display: none !important;
+  }
+
+  /* Show and style menu toggle icon in topbar on mobile */
+  .topbar-menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--paper);
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 8px;
+    margin-right: -8px;
+    transition: color 0.2s;
+  }
+
+  .topbar-menu-toggle:hover,
+  .topbar-menu-toggle:focus {
+    color: var(--accent);
+  }
+
+  .topbar-menu-toggle svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+  }
+  
+  /* Add body padding so bottom nav doesn't overlap contents */
+  body {
+    padding-bottom: 74px !important;
+  }
+
+  /* Bottom navigation bar styling */
+  .mobile-bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 66px;
+    background: var(--ink);
+    border-top: 2px solid var(--accent);
+    z-index: 999;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.25);
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 8px;
+  }
+
+  .bottom-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #c7c9cf;
+    text-decoration: none;
+    background: none;
+    border: none;
+    font-family: var(--body);
+    font-size: 0.72rem;
+    font-weight: 600;
+    gap: 4px;
+    flex: 1;
+    height: 100%;
+    padding: 4px 0;
+    transition: color 0.2s ease, transform 0.15s ease;
+    cursor: pointer;
+  }
+
+  .bottom-nav-item:hover,
+  .bottom-nav-item:active {
+    color: #ffffff;
+  }
+
+  .bottom-nav-item--active {
+    color: var(--accent) !important;
+  }
+
+  .bottom-nav-icon {
+    width: 22px;
+    height: 22px;
+    transition: transform 0.2s ease;
+  }
+
+  .bottom-nav-item:active .bottom-nav-icon {
+    transform: scale(0.9);
+  }
+
+  /* Slide-up Dashboard Panel styling */
+  .mobile-dashboard {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    pointer-events: none;
+    visibility: hidden;
+    transition: visibility 0.3s;
+  }
+
+  .mobile-dashboard--open {
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .mobile-dashboard-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 17, 22, 0.85);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .mobile-dashboard--open .mobile-dashboard-overlay {
+    opacity: 1;
+  }
+
+  .mobile-dashboard-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-height: 85vh;
+    background: var(--paper);
+    border-top: 4px solid var(--accent);
+    border-radius: 20px 20px 0 0;
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .mobile-dashboard--open .mobile-dashboard-content {
+    transform: translateY(0);
+  }
+
+  .mobile-dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--line);
+    background: var(--paper-dim);
+    border-radius: 16px 16px 0 0;
+  }
+
+  .mobile-dashboard-close {
+    font-size: 2.2rem;
+    color: var(--ink);
+    line-height: 1;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-top: -4px;
+  }
+
+  .mobile-dashboard-body {
+    padding: 24px;
+    overflow-y: auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .mobile-dashboard-active-body {
+    overflow: hidden !important;
+  }
+
+  /* Search bar inside Dashboard */
+  .dashboard-search-box {
+    width: 100%;
+  }
+
+  .dashboard-search-form {
+    display: flex;
+    position: relative;
+    width: 100%;
+  }
+
+  .dashboard-search-input {
+    width: 100%;
+    padding: 14px 50px 14px 18px;
+    font-family: var(--body);
+    font-size: 0.95rem;
+    border: 1.5px solid #cbd5e1;
+    border-radius: var(--radius);
+    background: #f8fafc;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .dashboard-search-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-dim);
+    background: #ffffff;
+  }
+
+  .dashboard-search-btn {
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent);
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .dashboard-search-btn:hover {
+    background: #a91f32;
+  }
+
+  /* Grid of tiles */
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .dashboard-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: var(--paper-dim);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    text-align: center;
+    gap: 8px;
+    transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+  }
+
+  .dashboard-tile:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+  }
+
+  .dashboard-tile-icon {
+    font-size: 1.6rem;
+  }
+
+  .dashboard-tile-label {
+    font-family: var(--body);
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  /* Contacts & actions */
+  .dashboard-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .dashboard-section-title {
+    font-family: var(--display);
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .dashboard-contact-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 18px;
+    border-radius: var(--radius);
+    font-family: var(--body);
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-decoration: none;
+    transition: transform 0.15s, filter 0.2s;
+  }
+
+  .dashboard-contact-btn:hover {
+    transform: translateY(-1px);
+    filter: brightness(0.95);
+  }
+
+  .dashboard-contact-btn--whatsapp {
+    background: #25d366;
+  }
+
+  .dashboard-contact-btn--maps {
+    background: #4f46e5;
+  }
+
+  .dashboard-contact-btn--phone {
+    background: var(--ink);
+    border: 1px solid #3a3d44;
+  }
+
+  .btn-icon-svg {
+    flex-shrink: 0;
+  }
+
+  /* Details info text */
+  .dashboard-info {
+    font-family: var(--body);
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    background: var(--paper-dim);
+    padding: 14px 18px;
+    border-radius: var(--radius);
+    border-left: 3px solid var(--accent);
+  }
+
+  .dashboard-info p {
+    margin-bottom: 4px;
+  }
+
+  .dashboard-info p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Social links inside dashboard */
+  .dashboard-socials {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    border-top: 1px solid var(--line);
+    padding-top: 16px;
+  }
+
+  .dashboard-socials-title {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+  }
+
+  .dashboard-socials-links {
+    display: flex;
+    gap: 16px;
+  }
+
+  .dashboard-socials-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--paper-dim);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  }
+
+  .dashboard-socials-links a:hover {
+    background: var(--accent-dim);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* Other mobile layout improvements */
+  .home-dial {
+    max-width: 200px !important;
+  }
+}
+
