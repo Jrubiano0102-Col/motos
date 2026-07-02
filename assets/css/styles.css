@@ -927,16 +927,64 @@ button {
     grid-template-columns: 1fr;
   }
 
-  .producto__layout {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
+  /* producto__layout mobile fix is handled in the product detail section below */
 }
 /* ============ PRODUCT DETAIL PAGE ============ */
 .producto-page {
   max-width: 1280px;
   margin: 0 auto;
   padding: 48px 32px 96px;
+}
+
+/* ---- Producto responsive (tablet) ---- */
+@media (max-width: 820px) {
+  .producto-page {
+    padding: 24px 16px 80px;
+  }
+
+  .producto__actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .producto__actions .btn {
+    width: 100%;
+  }
+
+  .producto__specs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .producto-page {
+    padding: 16px 12px 72px;
+  }
+
+  .producto__modelo {
+    font-size: 1.6rem;
+  }
+
+  .producto__price-box {
+    padding: 16px;
+  }
+
+  .producto__price {
+    font-size: 1.5rem;
+  }
+
+  .producto__specs {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .spec-card {
+    padding: 12px;
+  }
+
+  .historial__grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .producto__breadcrumb {
@@ -955,6 +1003,7 @@ button {
   color: var(--accent);
 }
 
+/* Desktop: imagen izquierda, info derecha (layout original) */
 .producto__layout {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
@@ -970,7 +1019,7 @@ button {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  border-radius: var(--radius);
+  border-radius: 10px;
   border: 1px solid var(--line);
   aspect-ratio: 4/3;
   width: 100%;
@@ -982,17 +1031,49 @@ button {
 }
 
 .producto__media--photo {
-  background: #f8fafc;
+  background: radial-gradient(circle at 50% 40%, #ffffff 0%, #f2f5f8 50%, #e7edf3 100%);
 }
 
 .producto__media .moto-photo {
   padding: 24px;
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
 }
 
+/* Desktop: info en columna flex normal */
 .producto__info {
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+.producto__info-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Mobile (≤768px): imagen arriba a ancho completo, info debajo */
+@media (max-width: 768px) {
+  .producto__layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .producto__media {
+    aspect-ratio: 16/9;
+    max-height: 300px;
+  }
+
+  .producto__actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .producto__actions .btn {
+    width: 100%;
+  }
 }
 
 .producto__marca {
@@ -1017,6 +1098,7 @@ button {
   color: var(--ink-soft);
   border-bottom: 1px solid var(--line);
   padding-bottom: 16px;
+  margin-top: 4px;
 }
 
 .producto__price-box {
@@ -1055,6 +1137,7 @@ button {
 
 .producto__actions {
   display: flex;
+  flex-direction: row;
   gap: 16px;
   margin-top: 8px;
 }

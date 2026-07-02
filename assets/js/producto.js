@@ -109,9 +109,11 @@ function renderProducto(m) {
         </div>
 
         <div class="producto__info">
-          <p class="producto__marca">${m.marca}</p>
-          <h1 class="producto__modelo">${m.modelo}</h1>
-          <p class="producto__sub">${m.anio} · ${m.cilindraje > 0 ? m.cilindraje + 'cc' : 'Eléctrica'} · Ref: ${m.referencia}</p>
+          <div class="producto__info-header">
+            <p class="producto__marca">${m.marca}</p>
+            <h1 class="producto__modelo">${m.modelo}</h1>
+            <p class="producto__sub">${m.anio} · ${m.cilindraje > 0 ? m.cilindraje + 'cc' : 'Eléctrica'} · Ref: ${m.referencia}</p>
+          </div>
 
           <div class="producto__price-box">
             <p class="producto__price-label">Precio de venta</p>
